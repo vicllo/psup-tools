@@ -1,6 +1,5 @@
 import DB_manager
 from dataclasses import *
-
 from datetime import datetime
 
 if __name__ == '__main__':
