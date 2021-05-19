@@ -1,6 +1,5 @@
 
 
-
 class Event:
     def __init__(self):
         pass
@@ -12,4 +11,3 @@ class UserEvent(Event):
 
 class ServerEvent(Event):
     pass
-
