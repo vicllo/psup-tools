@@ -10,6 +10,9 @@ class Event:
         self.date = date
         self.course = course
 
+    def __str__(self):
+        return ",".join([str(self.date),str(self.course)])
+
 
 class AcceptEvent(Event):
     def __init__(self, date, course):
@@ -31,6 +34,9 @@ class WaitingListEvent(Event):
         super(WaitingListEvent, self).__init__(date, course)
         self.place = place
 
+    def __str__(self):
+        return super().__str__()+",".join(["Waiting", str(self.place)])
+
 
 class PropositionEvent(Event):
     def __init__(self, date, course):
@@ -42,6 +48,9 @@ class Selectivity:
         self.places_available = places_available
         self.previous_last_entry = previous_last_entry
 
+    def __str__(self):
+        return "Available places : "+str(self.places_available)+",Last entry last year : "+str(self.previous_last_entry)
+
 
 class Course:
     def __init__(self, name, kind, internship, selectivity):
@@ -49,6 +58,9 @@ class Course:
         self.kind = kind
         self.internship = internship
         self.selectivity = selectivity
+
+    def __str__(self):
+        return ",".join([self.name, str(self.kind), str(self.internship), str(self.selectivity)])
 
 
 class CourseKind:
@@ -59,6 +71,9 @@ class CourseKind:
 class Prepa(CourseKind):
     def __init__(self):
         super(Prepa, self).__init__(True)
+
+    def __str__(self):
+        return "Prépa"
 
 
 class Licence(CourseKind):
