@@ -11,7 +11,7 @@ class Event:
         self.course = course
 
     def __str__(self):
-        return ",".join([str(self.date),str(self.course)])
+        return ",".join([str(self.date), str(self.course)])
 
 
 class AcceptEvent(Event):
@@ -35,7 +35,7 @@ class WaitingListEvent(Event):
         self.place = place
 
     def __str__(self):
-        return super().__str__()+",".join(["Waiting", str(self.place)])
+        return super().__str__()+","+",".join(["Waiting", str(self.place)])
 
 
 class PropositionEvent(Event):
@@ -73,7 +73,7 @@ class Prepa(CourseKind):
         super(Prepa, self).__init__(True)
 
     def __str__(self):
-        return "Prépa"
+        return "Prepa"
 
 
 class Licence(CourseKind):
