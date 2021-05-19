@@ -13,3 +13,7 @@ if __name__ == '__main__':
     event = WaitingListEvent(date, course, 78)
 
     DB_manager.add_event(file_name, event)
+
+    event = SchoolRefuseEvent(date, course)
+
+    DB_manager.add_event(file_name, event)
