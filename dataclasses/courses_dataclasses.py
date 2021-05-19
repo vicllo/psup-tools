@@ -21,7 +21,7 @@ class Selectivity:
         self.previous_last_entry = previous_last_entry
 
     def __str__(self):
-        return "Available places : "+str(self.places_available)+",Last entry last year : "+str(self.previous_last_entry)
+        return str(self.places_available)+","+str(self.previous_last_entry)
 
 
 class CourseKind:
