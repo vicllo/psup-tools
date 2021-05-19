@@ -33,7 +33,13 @@ class SimpleLicence(Licence):
     def __init__(self):
         super(SimpleLicence, self).__init__(False)
 
+    def __str__(self):
+        return "Simple licence"
+
 
 class DoubleLicence(Licence):
     def __init__(self):
         super(DoubleLicence, self).__init__(True)
+
+    def __str__(self):
+        return "Double licence"
