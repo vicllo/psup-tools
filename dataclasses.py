@@ -18,15 +18,24 @@ class AcceptEvent(Event):
     def __init__(self, date, course):
         super(AcceptEvent, self).__init__(date, course)
 
+    def __str__(self):
+        return super().__str__()+"Accepted"
+
 
 class UserRefuseEvent(Event):
     def __init__(self, date, course):
         super(UserRefuseEvent, self).__init__(date, course)
 
+    def __str__(self):
+        return super().__str__()+",UserRefused"
+
 
 class ServerRefuseEvent(Event):
     def __init__(self, date, course):
         super(ServerRefuseEvent, self).__init__(date, course)
+
+    def __str__(self):
+        return super().__str__()+",ServerRefused"
 
 
 class WaitingListEvent(Event):
@@ -41,6 +50,9 @@ class WaitingListEvent(Event):
 class PropositionEvent(Event):
     def __init__(self, date, course):
         super(PropositionEvent, self).__init__(date, course)
+
+    def __str__(self):
+        return super().__str__()+",Proposition"
 
 
 class Selectivity:
