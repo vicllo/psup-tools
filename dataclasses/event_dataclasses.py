@@ -30,12 +30,12 @@ class UserRefuseEvent(Event):
         return super().__str__()+",UserRefused"
 
 
-class ServerRefuseEvent(Event):
+class SchoolRefuseEvent(Event):
     def __init__(self, date, course):
-        super(ServerRefuseEvent, self).__init__(date, course)
+        super(SchoolRefuseEvent, self).__init__(date, course)
 
     def __str__(self):
-        return super().__str__()+",ServerRefused"
+        return super().__str__()+",SchoolRefused"
 
 
 class WaitingListEvent(Event):
