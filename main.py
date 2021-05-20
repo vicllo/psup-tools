@@ -18,17 +18,6 @@ if __name__ == '__main__':
 
     session.read()
 
-    date = datetime(2021, 5, 28, 19, 20, 00)
-    selectivity = Selectivity(370, 500)
-    course = Course("St Louis", Prepa(), False, selectivity)
-    event = WaitingListEvent(date, course, random.randint(1,100))
-
-    session.add_event(course, event)
-
-    event = SchoolRefuseEvent(date, course)
-
-    session.add_event(course, event)
-
     session.write()
 
     app = QtWidgets.QApplication(sys.argv)
