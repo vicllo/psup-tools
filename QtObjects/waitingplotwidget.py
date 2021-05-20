@@ -4,19 +4,22 @@ from PySide6.QtCharts import *
 from dataclasses import *
 
 
-def waiting_plot(course, parent):
-
-    series = QLineSeries()
-
-    for event in course.events:
-        if type(event) == WaitingListEvent:
-            series.append(event.date.day, int(event.place))
+def waiting_plot(courses, parent):
+    series = []
+    for course in courses:
+        print(course)
+        serie = QLineSeries()
+        for event in course.events:
+            if type(event) == WaitingListEvent:
+                serie.append(event.date.day, int(event.place))
+        series.append(serie)
 
     chart = QChart()
     chart.legend().hide()
-    chart.addSeries(series)
+    for serie in series:
+        chart.addSeries(serie)
     chart.createDefaultAxes()
-    chart.setTitle("Waiting list plot of "+course.name)
+    chart.setTitle("Waiting list plot of "+", ".join([course.name for course in courses]))
     chart_view = QChartView(chart, parent)
 
     return chart_view
