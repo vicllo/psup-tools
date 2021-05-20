@@ -4,7 +4,7 @@ from PySide6.QtCharts import *
 from dataclasses import *
 
 
-def waiting_plot(course):
+def waiting_plot(course, parent):
 
     series = QLineSeries()
 
@@ -17,6 +17,6 @@ def waiting_plot(course):
     chart.addSeries(series)
     chart.createDefaultAxes()
     chart.setTitle("Waiting list plot of "+course.name)
-    chart_view = QChartView(chart)
+    chart_view = QChartView(chart, parent)
 
     return chart_view
