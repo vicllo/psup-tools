@@ -14,13 +14,14 @@ class MainPage(QtWidgets.QSplitter):
         :param parent:
         """
         super(MainPage, self).__init__(parent)
+        self.session = session
         self.width = width
         self.height = height
         self.parent = parent
         self.setFixedSize(width, height)
 
-        self.menu = MenuWidget(parent=self)
-        self.plot = waiting_plot(session.courses["St Louis"])
+        self.menu = MenuWidget(session, parent=self)
+        self.plot = waiting_plot(session.courses["St Louis"], self)
         self.addWidget(self.menu)
         self.addWidget(self.plot)
 
@@ -30,5 +31,12 @@ class MainPage(QtWidgets.QSplitter):
 
     def display_all_courses(self):
         print("Show all courses")
+        self.plot.show()
+
+    def display_course(self):
+        source = self.sender()
+        print(source.course_name)
+        self.plot.hide()
+        self.plot = waiting_plot(self.session.courses[source.course_name], self)
         self.plot.show()
 
