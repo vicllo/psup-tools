@@ -21,22 +21,21 @@ class MainPage(QtWidgets.QSplitter):
         self.setFixedSize(width, height)
 
         self.menu = MenuWidget(session, parent=self)
-        self.plot = waiting_plot(session.courses["St Louis"], self)
+        self.plot = waiting_plot([session.courses["St Louis"]], self)
         self.addWidget(self.menu)
         self.addWidget(self.plot)
 
     def go_home(self):
-        print("Go home !")
         self.plot.hide()
 
     def display_all_courses(self):
-        print("Show all courses")
+        self.plot.hide()
+        self.plot = waiting_plot(self.session.courses.values(), self)
         self.plot.show()
 
     def display_course(self):
         source = self.sender()
-        print(source.course_name)
         self.plot.hide()
-        self.plot = waiting_plot(self.session.courses[source.course_name], self)
+        self.plot = waiting_plot([self.session.courses[source.course_name]], self)
         self.plot.show()
 
