@@ -32,7 +32,7 @@ class Session:
                 print(selectivity)
                 course = Course(name, kind, internship, selectivity)
                 if event_type == "Waiting":
-                    place = raw_event.split(",")[-2]
+                    place = raw_event.split(",")[-1]
                     event = all_event_kinds[event_type](date, course, place)
                 else:
                     event = all_event_kinds[event_type](date, course)
