@@ -2,6 +2,8 @@ from QtObjects import *
 from PySide6 import QtWidgets
 from dataclasses import *
 from QtObjects.waitingplotwidget import *
+from QtObjects.mainpage import *
+
 
 class MainWindow(QtWidgets.QMainWindow):
     # https://doc.qt.io/qtforpython/PySide6/QtWidgets/QMainWindow.html#qt-main-window-framework
@@ -21,5 +23,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         course = session.courses["St Louis"]
         #self.currentCentralWidget = WelcomePage(width, height, self)
-        self.currentCentralWidget = waiting_plot(course)
+        #self.currentCentralWidget = waiting_plot(course)
+        self.currentCentralWidget = MainPage(session, width, height)
         self.setCentralWidget(self.currentCentralWidget)

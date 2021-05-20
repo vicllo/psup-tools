@@ -29,7 +29,6 @@ class Session:
                 date, name, kind, internship, selectivity[0], selectivity[1], event_type = raw_event.split(",")[:7]
                 date = datetime.fromisoformat(date)
                 selectivity = Selectivity(int(selectivity[0]), int(selectivity[1]))
-                print(selectivity)
                 course = Course(name, kind, internship, selectivity)
                 if event_type == "Waiting":
                     place = raw_event.split(",")[-1]
@@ -43,7 +42,6 @@ class Session:
         for course in self.courses.values():
             for event in course.events:
                 events.append([event.date, event])
-        print(events)
         lines_to_write = [x[1] for x in sorted(events, key=lambda x:x[0])]
         with open(self.file_name, "w") as writing_file:
             for line_to_write in lines_to_write:

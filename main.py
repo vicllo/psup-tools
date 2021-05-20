@@ -11,7 +11,6 @@ import sys
 
 
 if __name__ == '__main__':
-    print("Hello World")
 
     file_name = "database.csv"
     session = Session(file_name)
