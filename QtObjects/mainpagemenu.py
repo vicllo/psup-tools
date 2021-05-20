@@ -23,6 +23,6 @@ class MenuWidget(QtWidgets.QWidget):
             new_course_button.clicked.connect(parent.display_course)
             courses_buttons.append(new_course_button)
 
-        all_courses_button = QtWidgets.QPushButton(text="Courses", parent=self)
+        all_courses_button = QtWidgets.QPushButton(text="All courses", parent=self)
         all_courses_button.move(0, 80)
         all_courses_button.clicked.connect(parent.display_all_courses)
