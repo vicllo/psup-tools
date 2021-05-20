@@ -1,5 +1,6 @@
 from dataclasses import *
 from constants import *
+from datetime import datetime
 
 
 class Session:
@@ -14,10 +15,10 @@ class Session:
 
     def add_event(self, course, event):
         if course.name in self.courses:  # TODO : Check si le in renvoie la clé ou la valeur
-            course.add_event(event)
+            self.courses[course.name].add_event(event)
         else:
             self.add_course(course)
-            course.add_event(event)
+            self.courses[course.name].add_event(event)
 
     def read(self):
         with open(self.file_name, "r") as reading_file:
@@ -26,6 +27,7 @@ class Session:
             if raw_event:
                 selectivity = [None, None]
                 date, name, kind, internship, selectivity[0], selectivity[1], event_type = raw_event.split(",")[:7]
+                date = datetime.fromisoformat(date)
                 selectivity = Selectivity(int(selectivity[0]), int(selectivity[1]))
                 print(selectivity)
                 course = Course(name, kind, internship, selectivity)
@@ -41,6 +43,7 @@ class Session:
         for course in self.courses.values():
             for event in course.events:
                 events.append([event.date, event])
+        print(events)
         lines_to_write = [x[1] for x in sorted(events, key=lambda x:x[0])]
         with open(self.file_name, "w") as writing_file:
             for line_to_write in lines_to_write:
