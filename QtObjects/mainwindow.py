@@ -21,8 +21,5 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setGeometry(x0, y0, width, height)
         self.setWindowTitle("Psup-Tools")
 
-        course = session.courses["St Louis"]
-        #self.currentCentralWidget = WelcomePage(width, height, self)
-        #self.currentCentralWidget = waiting_plot(course)
         self.currentCentralWidget = MainPage(session, width, height)
         self.setCentralWidget(self.currentCentralWidget)
