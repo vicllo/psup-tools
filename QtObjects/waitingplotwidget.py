@@ -7,7 +7,6 @@ from dataclasses import *
 def waiting_plot(courses, parent):
     series = []
     for course in courses:
-        print(course)
         serie = QLineSeries()
         for event in course.events:
             if type(event) == WaitingListEvent:
