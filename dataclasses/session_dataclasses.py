@@ -9,6 +9,7 @@ class Session:
             courses = {}
         self.file_name = file_name
         self.courses = courses
+        self.lines_read = 0
 
     def add_course(self, new_course):
         self.courses[new_course.name] = new_course
@@ -25,6 +26,7 @@ class Session:
             read = reading_file.read()
         for raw_event in read.split("\n"):
             if raw_event:
+                self.lines_read += 1
                 selectivity = [None, None]
                 date, name, kind, internship, selectivity[0], selectivity[1], event_type = raw_event.split(",")[:7]
                 date = datetime.fromisoformat(date)
@@ -43,6 +45,10 @@ class Session:
             for event in course.events:
                 events.append([event.date, event])
         lines_to_write = [x[1] for x in sorted(events, key=lambda x:x[0])]
-        with open(self.file_name, "w") as writing_file:
-            for line_to_write in lines_to_write:
-                writing_file.write(str(line_to_write)+"\n")
+        if self.lines_read == len(lines_to_write):
+            with open(self.file_name, "w") as writing_file:
+                for line_to_write in lines_to_write:
+                    writing_file.write(str(line_to_write)+"\n")
+        else:
+            print(self.lines_read, len(lines_to_write))
+            raise MemoryError("The writing output was not the same lenght as the input. Check the logfiles if it is still complete")
