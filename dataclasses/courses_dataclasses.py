@@ -7,12 +7,16 @@ class Course:
         self.internship = internship
         self.selectivity = selectivity
         self.events = []
+        self.last_event = None
+        if self.events:
+            self.last_event = sorted(self.events, key=lambda x: x.date)[0]
 
     def __str__(self):
         return ",".join([self.name, str(self.kind), str(self.internship), str(self.selectivity)])
 
     def add_event(self, event):
         self.events.append(event)
+        self.last_event = sorted(self.events, key=lambda x: x.date)[0]
 
 
 class Selectivity:
