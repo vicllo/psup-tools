@@ -9,7 +9,6 @@ class AddCourse(QWidget):
         super(AddCourse, self).__init__(parent)
 
         self.session = session
-
         self.form_layout = QFormLayout(self)
 
         self.course_name = QTextEdit()
@@ -34,7 +33,6 @@ class AddCourse(QWidget):
         self.save_button.clicked.connect(self.prepare_add_course)
         self.form_layout.addRow("", self.save_button)
 
-
     def prepare_add_course(self):
         name = self.course_name.toPlainText()
         kind = self.list_of_courses.currentText()
@@ -42,3 +40,5 @@ class AddCourse(QWidget):
         selectivity = Selectivity(self.places_available.value(), self.previous_last_entry.value())
         course = Course(name, kind, internship, selectivity)
         self.session.add_course(course)
+
+        self.parent().reload()
