@@ -37,6 +37,9 @@ class MainPage(QtWidgets.QSplitter):
         self.hide_all_pannels()
         self.global_overview.show()
 
+    def add_course(self):
+        print("Let's add a course")
+
     def add_event(self):
         self.hide_all_pannels()
         self.add_event_pannel.show()

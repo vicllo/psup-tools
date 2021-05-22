@@ -13,10 +13,14 @@ class MenuWidget(QtWidgets.QWidget):
         home_button = QtWidgets.QPushButton(text="Home", icon=QtGui.QIcon("house.png"), parent=self)
         home_button.clicked.connect(parent.go_home)
 
+        add_course_button = QtWidgets.QPushButton(text="Add course", parent=self)
+        add_course_button.move(0,20)
+        add_course_button.clicked.connect(parent.add_course)
+
         add_event_button = QtWidgets.QPushButton(text="Add event", parent=self)
         add_event_button.move(0, 40)
         add_event_button.clicked.connect(parent.add_event)
 
         all_courses_button = QtWidgets.QPushButton(text="All courses", parent=self)
-        all_courses_button.move(0, 20)
+        all_courses_button.move(0, 60)
         all_courses_button.clicked.connect(parent.display_all_courses)
