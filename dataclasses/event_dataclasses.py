@@ -1,17 +1,17 @@
-
+from PySide6.QtCore import Qt
 
 class Event:
     def __init__(self, date, course):
         """
         The standard event class
-        :param date: datetime
+        :param date: QDateTime
         :param course: Course
         """
         self.date = date
         self.course = course
 
     def __str__(self):
-        return ",".join([str(self.date), str(self.course)])
+        return ",".join([self.date.toString(Qt.DateFormat.ISODate), str(self.course)])
 
 
 class AcceptEvent(Event):
@@ -19,7 +19,7 @@ class AcceptEvent(Event):
         super(AcceptEvent, self).__init__(date, course)
 
     def __str__(self):
-        return super().__str__()+"Accepted"
+        return super().__str__()+",Accepted"
 
 
 class UserRefuseEvent(Event):
