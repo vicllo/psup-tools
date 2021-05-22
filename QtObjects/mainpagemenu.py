@@ -14,7 +14,7 @@ class MenuWidget(QtWidgets.QWidget):
         home_button.clicked.connect(parent.go_home)
 
         add_event_button = QtWidgets.QPushButton(text="Add event", parent=self)
-        add_event_button.move(0,40)
+        add_event_button.move(0, 40)
         add_event_button.clicked.connect(parent.add_event)
 
         all_courses_button = QtWidgets.QPushButton(text="All courses", parent=self)
