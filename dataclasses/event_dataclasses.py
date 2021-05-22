@@ -11,7 +11,7 @@ class Event:
         self.course = course
 
     def __str__(self):
-        return ",".join([self.date.toString(Qt.DateFormat.ISODate), str(self.course)])
+        return ",".join([self.date.toString(Qt.DateFormat.ISODate), str(self.course.name)])
 
 
 class AcceptEvent(Event):
@@ -19,7 +19,7 @@ class AcceptEvent(Event):
         super(AcceptEvent, self).__init__(date, course)
 
     def __str__(self):
-        return super().__str__()+",Accepted"
+        return super().__str__()+",Accepted,-1"
 
 
 class UserRefuseEvent(Event):
@@ -27,7 +27,7 @@ class UserRefuseEvent(Event):
         super(UserRefuseEvent, self).__init__(date, course)
 
     def __str__(self):
-        return super().__str__()+",UserRefused"
+        return super().__str__()+",UserRefused,-1"
 
 
 class SchoolRefuseEvent(Event):
@@ -35,7 +35,7 @@ class SchoolRefuseEvent(Event):
         super(SchoolRefuseEvent, self).__init__(date, course)
 
     def __str__(self):
-        return super().__str__()+",SchoolRefused"
+        return super().__str__()+",SchoolRefused,-1"
 
 
 class WaitingListEvent(Event):
@@ -52,4 +52,4 @@ class PropositionEvent(Event):
         super(PropositionEvent, self).__init__(date, course)
 
     def __str__(self):
-        return super().__str__()+",Proposition"
+        return super().__str__()+",Proposition,-1"
