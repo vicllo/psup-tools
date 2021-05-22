@@ -9,9 +9,11 @@ class AddCourse(QWidget):
         super(AddCourse, self).__init__(parent)
 
         self.session = session
+
         self.form_layout = QFormLayout(self)
 
         self.course_name = QTextEdit()
+        self.course_name.setMaximumHeight(40)
         self.form_layout.addRow("Name (name + subdivision + internship)", self.course_name)
 
         self.list_of_courses = QComboBox()
@@ -32,6 +34,9 @@ class AddCourse(QWidget):
         self.save_button = QPushButton("Save")
         self.save_button.clicked.connect(self.prepare_add_course)
         self.form_layout.addRow("", self.save_button)
+
+
+
 
     def prepare_add_course(self):
         name = self.course_name.toPlainText()
