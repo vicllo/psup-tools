@@ -13,46 +13,33 @@ class AddCourse(QWidget):
         self.form_layout = QFormLayout(self)
 
         self.course_name = QTextEdit()
-        self.form_layout.addRow("Name (name + subdivision + internship", self.course_name)
+        self.form_layout.addRow("Name (name + subdivision + internship)", self.course_name)
 
         self.list_of_courses = QComboBox()
         self.list_of_courses.addItems([course_kind for course_kind in session.possible_courses_kinds])
-        self.form_layout.addRow("Course", self.list_of_courses)
+        self.form_layout.addRow("Course type", self.list_of_courses)
 
-        self.list_of_events = QComboBox()
-        self.list_of_events.addItems([event_name for event_name in session.possible_events])
-        self.form_layout.addRow("Event type", self.list_of_events)
-        self.list_of_events.currentIndexChanged.connect(self.new_current_event)
-        self.waiting_position = None
+        self.internship = QCheckBox()
+        self.form_layout.addRow("Internship", self.internship)
+
+        self.places_available = QSpinBox()
+        self.places_available.setRange(0,1000000)
+        self.form_layout.addRow("Places available", self.places_available)
+
+        self.previous_last_entry = QSpinBox()
+        self.previous_last_entry.setRange(0,100000)
+        self.form_layout.addRow("Last year last entry", self.previous_last_entry)
 
         self.save_button = QPushButton("Save")
         self.save_button.clicked.connect(self.prepare_add_course)
         self.form_layout.addRow("", self.save_button)
 
 
-    def new_current_event(self):
-        source = self.sender()
-        if source.currentText() == "Waiting":
-            self.waiting_position = QSpinBox()
-            self.waiting_position.setRange(0, 1000000)
-            self.form_layout.insertRow(3, "Position", self.waiting_position)
-        else:
-            if self.waiting_position:
-                self.form_layout.removeRow(self.waiting_position)
-                self.waiting_position = None
-
     def prepare_add_course(self):
-        course_name = self.list_of_courses.currentText()
-        event_name = self.list_of_events.currentText()
-        date = self.calendar.dateTime()
-
-        course = self.session.courses[course_name]
-
-        event_kind = all_event_kinds[event_name]
-        if event_kind == WaitingListEvent:
-            place = self.waiting_position.value()
-            event = WaitingListEvent(date, course, place)
-        else:
-            event = event_kind(date, course)
-        self.session.add_event(course, event)
+        name = self.course_name.toPlainText()
+        kind = self.list_of_courses.currentText()
+        internship = self.internship.isChecked()
+        selectivity = Selectivity(self.places_available.value(), self.previous_last_entry.value())
+        course = Course(name, kind, internship, selectivity)
+        self.session.add_course(course)
 
