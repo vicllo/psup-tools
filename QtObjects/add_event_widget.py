@@ -57,4 +57,6 @@ class AddEvent(QWidget):
             event = event_kind(date, course)
         self.session.add_event(course, event)
 
+        self.parent().reload()
+
 
