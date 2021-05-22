@@ -17,6 +17,7 @@ class Event:
 class AcceptEvent(Event):
     def __init__(self, date, course):
         super(AcceptEvent, self).__init__(date, course)
+        self.kind = "Accepted"
 
     def __str__(self):
         return super().__str__()+",Accepted,-1"
@@ -25,6 +26,7 @@ class AcceptEvent(Event):
 class UserRefuseEvent(Event):
     def __init__(self, date, course):
         super(UserRefuseEvent, self).__init__(date, course)
+        self.kind = "UserRefused"
 
     def __str__(self):
         return super().__str__()+",UserRefused,-1"
@@ -33,7 +35,7 @@ class UserRefuseEvent(Event):
 class SchoolRefuseEvent(Event):
     def __init__(self, date, course):
         super(SchoolRefuseEvent, self).__init__(date, course)
-
+        self.kind = "SchoolRefused"
     def __str__(self):
         return super().__str__()+",SchoolRefused,-1"
 
@@ -42,6 +44,7 @@ class WaitingListEvent(Event):
     def __init__(self, date, course, place):
         super(WaitingListEvent, self).__init__(date, course)
         self.place = place
+        self.kind = "Waiting"
 
     def __str__(self):
         return super().__str__()+","+",".join(["Waiting", str(self.place)])
@@ -50,6 +53,7 @@ class WaitingListEvent(Event):
 class PropositionEvent(Event):
     def __init__(self, date, course):
         super(PropositionEvent, self).__init__(date, course)
+        self.kind = "Proposition"
 
     def __str__(self):
         return super().__str__()+",Proposition,-1"
