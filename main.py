@@ -12,8 +12,9 @@ import sys
 
 if __name__ == '__main__':
 
-    file_name = "database.csv"
-    session = Session(file_name)
+    event_file_name = "event_database.csv"
+    courses_file_name = "courses_database.csv"
+    session = Session(courses_file_name, event_file_name)
 
     session.read()
 
