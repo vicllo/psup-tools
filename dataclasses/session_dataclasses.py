@@ -14,6 +14,9 @@ class Session:
                                 "SchoolRefused": SchoolRefuseEvent,
                                 "Waiting": WaitingListEvent,
                                 "Proposition": PropositionEvent}
+        self.possible_courses_kinds = {"Prepa": Prepa,
+                                       "Simple licence": SimpleLicence,
+                                       "Double licence": DoubleLicence}
 
     def add_course(self, new_course):
         self.courses[new_course.name] = new_course
