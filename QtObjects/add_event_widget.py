@@ -3,6 +3,7 @@ from PySide6.QtCore import *
 from dataclasses import *
 from constants import *
 
+
 class AddEvent(QWidget):
     def __init__(self, session, parent):
         super(AddEvent, self).__init__(parent)
