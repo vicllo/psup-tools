@@ -1,6 +1,6 @@
 from dataclasses import *
 
-all_kinds = {"SimpleLicence": SimpleLicence,
+all_courses_kinds = {"SimpleLicence": SimpleLicence,
              "DoubleLicence": DoubleLicence,
              "Prepa": Prepa}
 
