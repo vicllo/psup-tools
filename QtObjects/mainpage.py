@@ -4,6 +4,8 @@ from QtObjects.mainpagemenu import MenuWidget
 from QtObjects.global_overview_widget import GlobalOverview
 from QtObjects.add_event_widget import AddEvent
 from QtObjects.add_course_widget import AddCourse
+from PySide6.QtCharts import *
+
 from QtObjects import *
 
 
@@ -23,7 +25,7 @@ class MainPage(QtWidgets.QSplitter):
         self.parent = parent
         self.setFixedSize(width, height)
         self.menu = MenuWidget(session, parent=self)
-        self.plot = waiting_plot([session.courses["St Louis MPSI"]], self)
+        self.plot = QChartView(QChart(), parent)
         self.global_overview = GlobalOverview(session, self)
         self.add_course_pannel = AddCourse(session, self)
         self.add_event_pannel = AddEvent(session, self)
@@ -32,6 +34,22 @@ class MainPage(QtWidgets.QSplitter):
                         "add_course": self.add_course_pannel,
                         "add_event": self.add_event_pannel}
         self.go_home()
+
+    def reload(self):
+        self.delete_all_pannels()
+        self.global_overview = GlobalOverview(self.session, self)
+        self.add_course_pannel = AddCourse(self.session, self)
+        self.add_event_pannel = AddEvent(self.session, self)
+        self.pannels = {"plot": self.plot,
+                        "overview": self.global_overview,
+                        "add_course": self.add_course_pannel,
+                        "add_event": self.add_event_pannel}
+        self.go_home()
+
+    def delete_all_pannels(self):
+        self.pannels["plot"] = self.plot
+        for pannel in self.pannels.values():
+            pannel.close()
 
     def hide_all_pannels(self):
         self.pannels["plot"] = self.plot
