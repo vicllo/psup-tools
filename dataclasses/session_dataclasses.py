@@ -39,6 +39,7 @@ class Session:
                 self.course_lines_read += 1
                 selectivity = [None, None]
                 name, kind, internship, selectivity[0], selectivity[1] = raw_event.split(",")
+                selectivity = Selectivity(selectivity[0], selectivity[1])
                 course = Course(name, kind, internship, selectivity)
                 if not name in self.courses.values():
                     self.add_course(course)
@@ -63,6 +64,14 @@ class Session:
 
     def write(self):
         events = []
+        lines_to_write = [str(course) for course in self.courses.values()]
+        if len(lines_to_write) >= self.course_lines_read:
+            with open(self.course_file_name, "w") as writing_file:
+                for line_to_write in lines_to_write:
+                    writing_file.write(str(line_to_write) + "\n")
+        else:
+            raise MemoryError("The writing output smaller then the input. Check the logfiles if it is still complete")
+
         for course in self.courses.values():
             for event in course.events:
                 events.append([event.date, event])
