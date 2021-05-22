@@ -17,11 +17,13 @@ if __name__ == '__main__':
 
     session.read()
 
-    session.write()
 
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindow(session, 300, 100, 640, 480)
     main_window.show()
 
-    sys.exit(app.exec())
+    exit_code = app.exec()
+    session.write()
+
+    sys.exit()
 
