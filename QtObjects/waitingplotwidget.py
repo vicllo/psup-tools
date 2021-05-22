@@ -10,7 +10,7 @@ def waiting_plot(courses, parent):
         serie = QLineSeries()
         for event in course.events:
             if type(event) == WaitingListEvent:
-                serie.append(event.date.day, int(event.place))
+                serie.append(event.date.date().day(), int(event.place))
         series.append(serie)
 
     chart = QChart()
