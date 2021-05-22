@@ -44,7 +44,6 @@ class MainPage(QtWidgets.QSplitter):
     def display_all_courses(self):
         self.hide_all_pannels()
         self.plot = waiting_plot(self.session.courses.values(), self)
-        self.plot.show()
 
     def display_course(self):
         self.hide_all_pannels()
