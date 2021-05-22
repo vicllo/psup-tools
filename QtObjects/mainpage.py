@@ -3,7 +3,7 @@ from QtObjects.waitingplotwidget import waiting_plot
 from QtObjects.mainpagemenu import MenuWidget
 from QtObjects.global_overview_widget import GlobalOverview
 from QtObjects.add_event_widget import AddEvent
-from QtObjects.add_course_widget import AddWidget
+from QtObjects.add_course_widget import AddCourse
 from QtObjects import *
 
 
@@ -27,7 +27,10 @@ class MainPage(QtWidgets.QSplitter):
         self.global_overview = GlobalOverview(session, self)
         self.add_course_pannel = AddCourse(session, self)
         self.add_event_pannel = AddEvent(session, self)
-        self.pannels = {"plot": self.plot, "overview": self.global_overview, "add_event": self.add_event_pannel}
+        self.pannels = {"plot": self.plot,
+                        "overview": self.global_overview,
+                        "add_course": self.add_course_pannel,
+                        "add_event": self.add_event_pannel}
         self.go_home()
 
     def hide_all_pannels(self):
@@ -41,7 +44,7 @@ class MainPage(QtWidgets.QSplitter):
 
     def add_course(self):
         self.hide_all_pannels()
-        self.add_course_pannel()
+        self.add_course_pannel.show()
 
     def add_event(self):
         self.hide_all_pannels()
