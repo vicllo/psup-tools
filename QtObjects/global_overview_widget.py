@@ -13,6 +13,8 @@ class CourseTile(QtWidgets.QAbstractButton):
         test_button = QtWidgets.QPushButton(course)
         self.clicked.connect(parent.display_course)
 
+
+
 class GlobalOverview(QtWidgets.QWidget):
 
     def __init__(self, session, parent):
@@ -39,6 +41,8 @@ class GlobalOverview(QtWidgets.QWidget):
                 course = session.courses[course_name]
                 if course.last_event:
                     event_shown = course.last_event.kind
+                    if event_shown == "Waiting":
+                        event_shown += " "+course.last_event.place+"/"+course.selectivity.previous_last_entry
                 else:
                     event_shown = ""
                 new_button = QtWidgets.QPushButton(
