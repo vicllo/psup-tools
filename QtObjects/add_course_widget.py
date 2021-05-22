@@ -42,4 +42,3 @@ class AddCourse(QWidget):
         selectivity = Selectivity(self.places_available.value(), self.previous_last_entry.value())
         course = Course(name, kind, internship, selectivity)
         self.session.add_course(course)
-
