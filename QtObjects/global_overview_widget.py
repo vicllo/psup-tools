@@ -14,7 +14,6 @@ class CourseTile(QtWidgets.QAbstractButton):
         self.clicked.connect(parent.display_course)
 
 
-
 class GlobalOverview(QtWidgets.QWidget):
 
     def __init__(self, session, parent):
