@@ -24,6 +24,9 @@ class MainPage(QtWidgets.QSplitter):
         self.height = height
         self.parent = parent
         self.setFixedSize(width, height)
+        
+        self.setObjectName("mainpage")
+        self.setStyleSheet("#mainpage { background-color: #222}")
 
         self.menu = MenuWidget(session, parent=self)
         self.plot = QChartView(QChart(), parent)
