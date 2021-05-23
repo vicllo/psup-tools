@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets, QtGui
-
+from QtObjects.customstylewidget import *
 
 class CourseTile(QtWidgets.QAbstractButton):
     def __init__(self, course, parent):
@@ -44,7 +44,7 @@ class GlobalOverview(QtWidgets.QWidget):
                         event_shown += " "+course.last_event.place+"/"+course.selectivity.previous_last_entry
                 else:
                     event_shown = ""
-                new_button = QtWidgets.QPushButton(
+                new_button = CustomQPushBox(
                     text=course_name+"\n"+event_shown,
                     parent=self)
                 new_button.course_name = course_name

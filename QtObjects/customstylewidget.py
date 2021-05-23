@@ -40,13 +40,11 @@ class CustomQPushBox(QPushButton):
 
         # DRAW BG
         p.setBrush(QColor(self._bg_color))
-        p.drawRoundedRect(0, 0, rect.width(), self.height(), self.height()/3, self.height()/3)
+        p.drawRoundedRect(0, 0, rect.width(), self.height(), 0*self.height()/3, 0*self.height()/3)
 
         #DRAW TEXT
         p.setPen(Qt.white)
         p.drawText(rect, Qt.AlignCenter, self.text())
-        print(self.text())
 
         # END DRAW
-        print(self.height())
         p.end()
