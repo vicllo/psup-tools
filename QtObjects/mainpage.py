@@ -24,6 +24,7 @@ class MainPage(QtWidgets.QSplitter):
         self.height = height
         self.parent = parent
         self.setFixedSize(width, height)
+
         self.menu = MenuWidget(session, parent=self)
         self.plot = QChartView(QChart(), parent)
         self.global_overview = GlobalOverview(session, self)
