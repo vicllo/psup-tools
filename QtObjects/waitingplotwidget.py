@@ -26,7 +26,6 @@ def waiting_plot(courses, parent):
     y_axis.setTitleText("Waiting position")
     y_axis.setRange(0, 1000)
 
-
     chart = QChart()
 
     # STYLE
