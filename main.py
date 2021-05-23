@@ -27,8 +27,9 @@ if __name__ == '__main__':
 
     session.read()
 
-
     app = QtWidgets.QApplication(sys.argv)
+    app.setStyle(QStyleFactory.create("fusion"))
+
     main_window = MainWindow(session, 300, 100, 640, 480)
     main_window.show()
 
