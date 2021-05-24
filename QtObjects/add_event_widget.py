@@ -2,7 +2,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from dataclasses import *
 from constants import *
-
+from QtObjects.customstylewidget import *
 
 class AddEvent(QWidget):
     def __init__(self, session, parent):
@@ -26,7 +26,7 @@ class AddEvent(QWidget):
         self.list_of_events.currentIndexChanged.connect(self.new_current_event)
         self.waiting_position = None
 
-        self.save_button = QPushButton("Save")
+        self.save_button = CustomQPushBox("Save", width=300)
         self.save_button.clicked.connect(self.prepare_add_event)
         self.form_layout.addRow("", self.save_button)
 

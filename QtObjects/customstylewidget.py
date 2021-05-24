@@ -19,6 +19,10 @@ class CustomQPushBox(QPushButton):
         #SET DEFAULT PARAMETERS
         self.setCursor(Qt.PointingHandCursor)
 
+        #SET SIZE
+        self.setMinimumWidth(width)
+        self.setMinimumHeight(width*0.3)
+
         #COLORS
         self._bg_color = bg_color
         self._circle_color = circle_color
@@ -44,6 +48,9 @@ class CustomQPushBox(QPushButton):
 
         #DRAW TEXT
         p.setPen(Qt.white)
+        new_font = p.font()
+        new_font.setPixelSize(self.height()//5)
+        p.setFont(new_font)
         p.drawText(rect, Qt.AlignCenter, self.text())
 
         # END DRAW

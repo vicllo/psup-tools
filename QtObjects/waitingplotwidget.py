@@ -32,8 +32,7 @@ def waiting_plot(courses, parent):
         graphWidget.setTitle("Waiting list plots", color="w", size="10pt")
     # Add Axis Labels
     styles = {"color": "#fffff", "font-size": "20px"}
-    graphWidget.setLabel("left", "Temperature (°C)", **styles)
-    graphWidget.setLabel("bottom", "Hour (H)", **styles)
+    graphWidget.setLabel("left", "Place", **styles)
     graphWidget.setAxisItems({'bottom' : pg.DateAxisItem('bottom')})
     #Add legend
     graphWidget.addLegend()

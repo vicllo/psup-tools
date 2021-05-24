@@ -16,14 +16,14 @@ class CourseTile(QtWidgets.QAbstractButton):
 
 class GlobalOverview(QtWidgets.QWidget):
 
-    def __init__(self, session, parent):
+    def __init__(self, session, width, height, parent):
         """
         Defines the menu widget of the game
         :param parent:
         """
         super(GlobalOverview, self).__init__(parent)
 
-        #test_button = QtWidgets.QPushButton("Hey", self)
+        self.setFixedSize(width, height)
 
         top_to_bottom = QtWidgets.QBoxLayout.TopToBottom
         left_to_right = QtWidgets.QBoxLayout.LeftToRight
@@ -46,7 +46,8 @@ class GlobalOverview(QtWidgets.QWidget):
                     event_shown = ""
                 new_button = CustomQPushBox(
                     text=course_name+"\n"+event_shown,
-                    parent=self)
+                    parent=self,
+                    width=self.width()//4)
                 new_button.course_name = course_name
 
                 new_button.clicked.connect(parent.display_course)

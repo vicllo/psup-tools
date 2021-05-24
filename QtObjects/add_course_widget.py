@@ -2,7 +2,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from dataclasses import *
 from constants import *
-
+from QtObjects.customstylewidget import *
 
 class AddCourse(QWidget):
     def __init__(self, session, parent):
@@ -31,7 +31,7 @@ class AddCourse(QWidget):
         self.previous_last_entry.setRange(0,100000)
         self.form_layout.addRow("Last year last entry", self.previous_last_entry)
 
-        self.save_button = QPushButton("Save")
+        self.save_button = CustomQPushBox("Save", width=300)
         self.save_button.clicked.connect(self.prepare_add_course)
         self.form_layout.addRow("", self.save_button)
 

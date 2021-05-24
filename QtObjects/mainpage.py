@@ -28,9 +28,14 @@ class MainPage(QtWidgets.QSplitter):
         self.setObjectName("mainpage")
         self.setStyleSheet("#mainpage { background-color: #222}")
 
-        self.menu = MenuWidget(session, parent=self)
+        self.menu_width = self.width*0.1
+        self.menu_height = self.height
+        self.other_witdh = self.width*0.9
+        self.other_height = self.height
+
+        self.menu = MenuWidget(session, self.menu_width, self.menu_height, parent=self)
         self.plot = QChartView(QChart(), parent)
-        self.global_overview = GlobalOverview(session, self)
+        self.global_overview = GlobalOverview(session, self.other_witdh, self.other_height, parent=self)
         self.add_course_pannel = AddCourse(session, self)
         self.add_event_pannel = AddEvent(session, self)
         self.pannels = {"plot": self.plot,

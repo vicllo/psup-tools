@@ -21,7 +21,6 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__(parent)
         self.setGeometry(x0, y0, width, height)
         self.setWindowTitle("Psup-Tools")
-        self.setMenuBar(None)
         #self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         #https://living-sun.com/fr/python/718714-how-do-i-create-a-custom-window-title-bar-using-pyqt4-python-css-user-interface-pyqt4.html
 
