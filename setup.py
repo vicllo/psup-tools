@@ -4,7 +4,8 @@ from cx_Freeze import setup, Executable
 from includes import *
 
 # ADD FILES
-files = ['QtObjects/house.png']
+files = ['QtObjects/house.png',
+         'icon.ico']
 
 # TARGET
 target = Executable(
@@ -20,6 +21,7 @@ setup(
     description="Tool for Parcoursup",
     author="Victor L",
     options = {"build_exe": {"include_files": files}},
+    icon="icon.ico",
     executables = [target]
 
 )

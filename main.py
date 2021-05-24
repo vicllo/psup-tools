@@ -47,8 +47,10 @@ if __name__ == '__main__':
     palette.setColor(QPalette.HighlightedText, Qt.black)
     app.setPalette(palette)
 
+    app.setWindowIcon(QIcon("icon.ico"))
+
     main_window = MainWindow(session, 300, 100, 640, 480)
-    main_window.show()
+    main_window.showMaximized()
 
     exit_code = app.exec()
     session.write()

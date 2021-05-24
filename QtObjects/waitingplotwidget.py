@@ -40,8 +40,10 @@ def waiting_plot(courses, parent):
     chart.addAxis(x_axis, Qt.AlignBottom)
     chart.addAxis(y_axis, Qt.AlignLeft)
 
-
-    chart.setTitle("Waiting list plot of "+", ".join([course.name for course in courses]))
+    if len(courses) == 1:
+        chart.setTitle("Waiting list plot of "+", ".join([course.name for course in courses]))
+    else:
+        chart.setTitle("Waiting list plots")
     chart_view = QChartView(chart, parent)
     chart_view.setRenderHint(QPainter.Antialiasing)
 

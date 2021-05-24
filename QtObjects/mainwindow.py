@@ -3,6 +3,7 @@ from PySide6 import QtWidgets
 from dataclasses import *
 from QtObjects.waitingplotwidget import *
 from QtObjects.mainpage import *
+from PySide6 import QtCore
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -20,6 +21,9 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__(parent)
         self.setGeometry(x0, y0, width, height)
         self.setWindowTitle("Psup-Tools")
+        self.setMenuBar(None)
+        #self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        #https://living-sun.com/fr/python/718714-how-do-i-create-a-custom-window-title-bar-using-pyqt4-python-css-user-interface-pyqt4.html
 
         self.currentCentralWidget = MainPage(session, width, height)
         self.setCentralWidget(self.currentCentralWidget)
