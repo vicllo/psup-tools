@@ -35,8 +35,9 @@ class AddCourse(QWidget):
         self.save_button.clicked.connect(self.prepare_add_course)
         self.form_layout.addRow("", self.save_button)
 
-
-
+        self.empty_widget = QWidget()
+        self.empty_widget.setMinimumHeight(self.height()*0.7)
+        self.form_layout.addRow("", self.empty_widget)
 
     def prepare_add_course(self):
         name = self.course_name.toPlainText()
