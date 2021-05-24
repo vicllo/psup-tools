@@ -1,52 +1,51 @@
-from PySide6.QtGui import QPainter
-from PySide6.QtWidgets import *
-from PySide6.QtCharts import *
-from dataclasses import *
-
+from PySide6.QtWidgets import QApplication, QMainWindow
 import pyqtgraph as pg
+from dataclasses import *
 
 
 def waiting_plot(courses, parent):
-    series = []
+
+    all_colors = ["#3bb9eb", "#f2622a", "#95c551", "#98ffd5", "#d3e7c1", "#ff98c2", "#bdb5d5", "#8d6c9f"]
+    graphWidget = pg.PlotWidget(parent)
+
+    #Add Background colour to dark
+    graphWidget.setBackground('#474747')
+
+    x_series = []
+    y_series = []
+    name_series = []
     for course in courses:
-        serie = QLineSeries()
+        x_serie = []
+        y_serie = []
         for event in course.events:
             if type(event) == WaitingListEvent:
-                serie.append(event.date.toSecsSinceEpoch(), int(event.place))
-            serie.setName(course.name)
-        series.append(serie)
+                x_serie.append(event.date.toSecsSinceEpoch())
+                y_serie.append(int(event.place))
+        name_series.append(course.name)
+        x_series.append(x_serie)
+        y_series.append(y_serie)
 
-    x_axis = QDateTimeAxis()
-    x_axis.setTickCount(10)
-    x_axis.setFormat("dd MMM")
-    x_axis.setTitleText("Date")
-    x_axis.setRange(QDateTime(2021, 5, 20, 0, 0, 0), QDateTime(2021, 7, 1, 0, 0, 0))
-
-    y_axis = QValueAxis()
-    y_axis.setTickCount(10)
-    y_axis.setLabelFormat("%i")
-    y_axis.setTitleText("Waiting position")
-    y_axis.setRange(0, 1000)
-
-    chart = QChart()
-
-    # STYLE
-    chart.setTheme(QChart.ChartThemeDark)
-
-    for serie in series:
-        serie.attachAxis(x_axis)
-        serie.attachAxis(y_axis)
-        chart.addSeries(serie)
-
-
-    chart.addAxis(x_axis, Qt.AlignBottom)
-    chart.addAxis(y_axis, Qt.AlignLeft)
-
+    # Add Title
     if len(courses) == 1:
-        chart.setTitle("Waiting list plot of "+", ".join([course.name for course in courses]))
+        graphWidget.setTitle("Waiting list plot of "+", ".join([course.name for course in courses]), color="w", size="10pt")
     else:
-        chart.setTitle("Waiting list plots")
-    chart_view = QChartView(chart, parent)
-    chart_view.setRenderHint(QPainter.Antialiasing)
+        graphWidget.setTitle("Waiting list plots", color="w", size="10pt")
+    # Add Axis Labels
+    styles = {"color": "#fffff", "font-size": "20px"}
+    graphWidget.setLabel("left", "Temperature (°C)", **styles)
+    graphWidget.setLabel("bottom", "Hour (H)", **styles)
+    graphWidget.setAxisItems({'bottom' : pg.DateAxisItem('bottom')})
+    #Add legend
+    graphWidget.addLegend()
+    #Add grid
+    graphWidget.showGrid(x=True, y=True)
+    #Set Range
+    graphWidget.setXRange(QDateTime(2021,5,1,0,0,0).toSecsSinceEpoch(), QDateTime(2021,7,1,0,0,0).toSecsSinceEpoch())
+    graphWidget.setYRange(0, 1000)
 
-    return chart_view
+    for i in range(len(courses)):
+        pen = pg.mkPen(color=all_colors[i%len(all_colors)])
+        graphWidget.plot(x_series[i], y_series[i], name=name_series[i], pen=pen, symbol="o", symbolSize=10, symbolBrush=all_colors[i%len(all_colors)])
+
+    return graphWidget
+
