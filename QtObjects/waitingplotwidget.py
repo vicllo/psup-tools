@@ -3,6 +3,8 @@ from PySide6.QtWidgets import *
 from PySide6.QtCharts import *
 from dataclasses import *
 
+import pyqtgraph as pg
+
 
 def waiting_plot(courses, parent):
     series = []

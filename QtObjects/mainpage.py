@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets, QtGui
-from QtObjects.waitingplotwidget import waiting_plot
+from QtObjects.waitingplotwidget_pyqtgraph import waiting_plot
 from QtObjects.mainpagemenu import MenuWidget
 from QtObjects.global_overview_widget import GlobalOverview
 from QtObjects.add_event_widget import AddEvent
