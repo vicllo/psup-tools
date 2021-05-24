@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     app.setWindowIcon(QIcon("icon.ico"))
 
-    main_window = MainWindow(session, 0, 0, 1920, 1000)
+    main_window = MainWindow(session, 0, 0, 1800, 1000)
     main_window.show()
 
     exit_code = app.exec()

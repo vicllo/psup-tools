@@ -46,7 +46,7 @@ class MainPage(QtWidgets.QSplitter):
 
     def reload(self):
         self.delete_all_pannels()
-        self.global_overview = GlobalOverview(self.session, self)
+        self.global_overview = GlobalOverview(self.session, self.other_witdh, self.other_height, parent=self)
         self.add_course_pannel = AddCourse(self.session, self)
         self.add_event_pannel = AddEvent(self.session, self)
         self.pannels = {"plot": self.plot,
@@ -54,6 +54,7 @@ class MainPage(QtWidgets.QSplitter):
                         "add_course": self.add_course_pannel,
                         "add_event": self.add_event_pannel}
         self.go_home()
+        print("Reload")
 
     def delete_all_pannels(self):
         self.pannels["plot"] = self.plot
